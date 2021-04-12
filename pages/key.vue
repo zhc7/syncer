@@ -138,6 +138,19 @@ export default {
     destroy(key) {
       this.destroyDia = true;
     }
+  },
+
+  watch: {
+    selectedKey: function () {
+      window.data.selectedKey = this.selectedKey;
+    }
+  },
+
+  created() {
+    this.selectedKey = window.data.selectedKey;
+    /* todo: 1. 从local storage初始化key列表
+             2. 从local storage读取当前选中的key
+     */
   }
 }
 </script>

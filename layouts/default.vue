@@ -25,7 +25,7 @@
           size="64"
         ></v-avatar>
 
-        <div>john@vuetifyjs.com</div>
+        <div>{{ window.data.selectedKey }}</div>
       </v-sheet>
 
       <v-divider></v-divider>
@@ -83,6 +83,11 @@ export default {
     redirect: function (location) {
       this.$router.push(location)
     }
+  },
+
+  created() {
+    window.data = {}; // for global data storage
+    window.data.selectedKey = 1; // WIP
   }
 }
 </script>
