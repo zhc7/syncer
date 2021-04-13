@@ -25,7 +25,7 @@
           size="64"
         ></v-avatar>
 
-        <div>{{ window.data.selectedKey }}</div>
+        <div>Key: {{ keyName }}</div>
       </v-sheet>
 
       <v-divider></v-divider>
@@ -67,11 +67,17 @@ export default {
     drawer: true,
     links: [
       ['mdi-key-chain', '秘钥管理', "/key"],
-      ['mdi-send', 'Send', "send"],
+      ['mdi-devices', '设备管理', "/device"],
       ['mdi-delete', 'Trash', "trash"],
       ['mdi-alert-octagon', 'Spam', "spam"],
     ],
   }),
+
+  computed: {
+    keyName() {
+      return this.$store.state.selectedKey;
+    }
+  },
 
   watch: {
     darkSwitch: function(n, o) {
@@ -85,9 +91,13 @@ export default {
     }
   },
 
-  created() {
+  mounted() {
+    /*
     window.data = {}; // for global data storage
     window.data.selectedKey = 1; // WIP
+    this.keyName = window.data.selectedKey;
+
+     */
   }
 }
 </script>

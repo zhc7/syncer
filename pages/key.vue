@@ -95,7 +95,7 @@
           <v-btn color="error">
             确定
           </v-btn>
-          <v-btn color="info" @click="editDia = false">
+          <v-btn color="info" @click="newDia = false">
             取消
           </v-btn>
         </v-card-actions>
@@ -108,7 +108,6 @@
 export default {
   name: "key",
   data: () => ({
-    selectedKey: 1,
     keys: ["key1", "key2", "key3"],
     destroyDia: false,
     editDia: false,
@@ -126,6 +125,17 @@ export default {
     newForm: false,
   }),
 
+  computed: {
+    selectedKey: {
+      get: function () {
+        return this.$store.state.selectedKey;
+      },
+      set: function (value) {
+        this.$store.commit("change", value);
+      }
+    }
+  },
+
   methods: {
     newKey() {
       this.newDia = true;
@@ -137,16 +147,15 @@ export default {
 
     destroy(key) {
       this.destroyDia = true;
-    }
+    },
+
   },
 
   watch: {
-    selectedKey: function () {
-      window.data.selectedKey = this.selectedKey;
-    }
   },
 
-  created() {
+  mounted() {
+    /*
     this.selectedKey = window.data.selectedKey;
     /* todo: 1. 从local storage初始化key列表
              2. 从local storage读取当前选中的key
