@@ -2,12 +2,12 @@
   <div>
     <h2>数据管理</h2>
     <p class="mt-3">管理你的数据</p>
-    <v-divider class="mt-6"></v-divider>
+    <v-divider class="mt-6"/>
     <v-row class="mt-3">
       <v-col md="9" sm="12">
-        <div id="text" ref="box">
-          {{ text }}
-        </div>
+        <v-card id="text" @scroll="scroll">
+          <v-card-text v-text="text" />
+        </v-card>
       </v-col>
       <v-col md="3" sm="0">
         <v-card>
@@ -29,20 +29,26 @@ let space = "Lorem ipsum dolor sit amet, et eam possit similique, nam no elit fe
 "Ceteros mediocritatem ei eam. Soluta nonumes an mea, errem dissentias te qui. Ut justo deserunt has.\n\n\n"
 
 export default {
-  name: "data",
+  name: "data1",
   data: () => ({
-    text: space +space+space+space+space+space
+    text: space +space+space+space+space+space+space+space+space,
+    count: 0
   }),
 
-  mounted() {
-    this.$refs.box.addEventListener("scroll", this.scroll, true)
+  methods: {
+    scroll(event) {
+      const ele = event.target
+      if (ele.scrollTop <= 100) {
+        this.text = this.count + space + this.text
+        this.count += 1
+
+      }
+    }
   },
 
-  methods: {
-    scroll() {
-      console.log(this.$refs.box.scrollTop);
-      this.text += space;
-    }
+  mounted() {
+    const ele = document.getElementById('text')
+    ele.scrollTop = ele.scrollHeight - ele.clientHeight
   }
 }
 </script>
@@ -56,7 +62,7 @@ export default {
 
   overflow: scroll;
 
-  height: initial;
+  height: 50vh;
 }
 
 </style>

@@ -62,13 +62,13 @@
 <script>
 export default {
   data: () => ({
-    darkSwitch: true,
+    darkSwitch: false,
     cards: ['Today', 'Yesterday'],
-    drawer: true,
+    drawer: false,
     links: [
       ['mdi-key-chain', '秘钥管理', "/key"],
       ['mdi-devices', '设备管理', "/device"],
-      ['mdi-delete', 'Trash', "trash"],
+      ['mdi-file-document-multiple-outline', '数据管理', "/data"],
       ['mdi-alert-octagon', 'Spam', "spam"],
     ],
   }),

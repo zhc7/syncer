@@ -2,7 +2,7 @@
   <div>
     <h2>设备管理</h2>
     <p class="mt-3">管理你的设备</p>
-    <v-divider class="mt-6"></v-divider>
+    <v-divider class="mt-6"/>
     <v-row>
       <v-col md="6" sm="12" v-for="device in devices" :key="device.id">
         <v-card class="ma-3">

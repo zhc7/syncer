@@ -2,7 +2,7 @@
   <div>
     <h2>密钥管理</h2>
     <p class="mt-3">管理你的秘钥</p>
-    <v-divider class="mt-6"></v-divider>
+    <v-divider class="mt-6"/>
     <v-card class="mt-3">
       <v-list>
         <v-list-item-group v-model="selectedKey" active-class="activated">
