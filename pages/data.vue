@@ -27,6 +27,7 @@
 
 <script>
 import { throttle } from 'lodash'
+import {encrypt, decrypt, key, iv, hash} from '/controls/cipher'
 
 const space = "Lorem ipsum dolor sit amet, et eam possit similique, nam no elit feugiat argumentum. Id sea" +
 " rebum facilisi signiferumque, aliquip nostrud ad nec. In alii delicata pri, doming principes sed no. " +
@@ -52,7 +53,7 @@ export default {
         const lastScroll = ele.scrollHeight - ele.scrollTop
 
         const load = () => {
-          this.text = this.count + space + this.text
+          this.text = this.count + decrypt(encrypt(space, key, iv), key, iv) + hash(space) + "\n" + this.text
           this.count += 1
           this.$nextTick(() => {
             ele.scrollTop = ele.scrollHeight - lastScroll
@@ -85,6 +86,7 @@ export default {
 
 #text {
   overflow-y: scroll;
+  white-space: pre-wrap;
   height: 50vh;
 }
 
